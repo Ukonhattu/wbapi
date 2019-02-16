@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,7 @@
   "author": "Daniel Koch",
   "license": "ISC",
   "dependencies": {
+    "csvtojson": "^2.0.8",
     "express": "^4.16.4"
   },
   "devDependencies": {
