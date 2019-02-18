@@ -33,6 +33,34 @@ exports.popCountryYear = (name, year) => {
     return population.filter(p => p['Data Source'] === name)[0][getYearField(year, population)]
 }
 
+exports.co2Range = (name, start, end) => {
+    let res = {}
+    res.country = name
+    let years = []
+    for (i = start; i < end +1; i++) {
+        let year = {}
+        year.year = i
+        year.value = this.co2CountryYear(name, i)
+        years.push(year)
+    }
+    res.values = years
+    return res
+}
+
+exports.popRange = (name, start, end) => {
+    let res = {}
+    res.country = name
+    let years = []
+    for (i = start; i < end +1; i++) {
+        let year = {}
+        year.year = i
+        year.value = this.popCountryYear(name, i)
+        years.push(year)
+    }
+    res.values = years
+    return res
+}
+
 getYearField = (year, obj) => {
     for (let key in obj[1]) {
         let attrName = key;
@@ -41,17 +69,3 @@ getYearField = (year, obj) => {
     }
     return "undefined year"
 }
-
-// beautify = (arr) => {
-//     const start = 1960
-//     let str = JSON.stringify(arr)
-//     for (i = 5; i < 65; i++) {
-//         let rep = "field".concat(i)
-//         console.log(rep)
-//         let regex = new RegExp(rep, "g")
-//         let year = start + (i-5) 
-//         str = str.replace(regex, year.toString())
-//     }
-//     arr = JSON.parse(str)
-//     return arr
-// }
