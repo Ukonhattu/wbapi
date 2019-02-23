@@ -16,21 +16,21 @@ csv().fromFile(populationFilePath).then((jsonObj) => {
 exports.co2json = () => co2
 
 exports.co2Country = (name) => {
-    return co2.filter(p => p['Data Source'] === name)
+    return co2.filter(p => p['Data Source'].toUpperCase() === name.toUpperCase())
 }
 
 exports.co2CountryYear = (name, year) => {
-    return co2.filter(p => p['Data Source'] === name)[0][getYearField(year, co2)]
+    return co2.filter(p => p['Data Source'].toUpperCase() === name.toUpperCase())[0][getYearField(year, co2)]
 }
 
 exports.populationjson = () => population
 
 exports.popCountry = (name) => {
-    return population.filter(p => p['Data Source'] === name)
+    return population.filter(p => p['Data Source'].toUpperCase() === name.toUpperCase())
 }
 
 exports.popCountryYear = (name, year) => {
-    return population.filter(p => p['Data Source'] === name)[0][getYearField(year, population)]
+    return population.filter(p => p['Data Source'].toUpperCase() === name.toUpperCase())[0][getYearField(year, population)]
 }
 
 exports.co2Range = (name, start, end) => {
@@ -59,6 +59,23 @@ exports.popRange = (name, start, end) => {
     }
     res.values = years
     return res
+}
+
+exports.co2percapitaRange = (name, start, end) => {
+    let co2 = this.co2Range(name, start, end).values
+    let pop = this.popRange(name, start, end).values
+    let res = {}
+    res.country = name
+    let cpc = []
+    for (let i = 0; i < end-start; i++) {
+        let year = {}
+        year.year = start + i
+        year.value = co2[i].value / pop[i].value
+        cpc.push(year)
+    }
+    res.values = cpc
+    return res
+
 }
 
 getYearField = (year, obj) => {

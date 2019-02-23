@@ -45,7 +45,16 @@ app.get('/pop/country/:name/:start/:end', (req, res) => {
     const end = Number(req.params.end)
     res.send(api.popRange(name, start, end))
 })
-const PORT = 3001
+
+app.get('/co2/country/:name/:start/:end/:percapita', (req, res) => {
+    const name = req.params.name
+    const start = Number(req.params.start)
+    const end = Number(req.params.end)
+    const pc = req.params.percapita
+    if (pc == 'true') res.send(api.co2percapitaRange(name, start, end))
+    else res.send(api.co2Range(name, start, end))
+})
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
