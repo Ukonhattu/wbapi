@@ -9,10 +9,11 @@ const popDataurl = 'http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloa
 const download = require('download-file')
 const glob = require('glob')
 const rimraf = require('rimraf')
+const cron = require('node-cron')
 
 let co2 = null
 let population = null
-
+//****Download and unzip data from wordbank **************************************************/
 const downloadData = (url, fileName) => {
 
     const downloadOptions = {
@@ -27,7 +28,7 @@ const downloadData = (url, fileName) => {
     })
 }
 
- downloadData(co2Dataurl, 'co2Data.zip')
+const cronJob = downloadData(co2Dataurl, 'co2Data.zip')
     .then((result) => {
         glob(co2FileStart+'*', {}, (err, files) => {
             co2FilePath = files[0]
@@ -40,16 +41,18 @@ const downloadData = (url, fileName) => {
 
     })}))
     .then((result) => rimraf('./data/*', () => {
-        console.log('päästiin tänne asti')
         const co2zip = new AdmZip('./temp/co2Data.zip')
         co2zip.extractAllTo('./data/', true)
-        console.log('päästiin tänne asti2')
         const popzip = new AdmZip('./temp/popData.zip')
         popzip.extractAllTo('./data/', true)
     }))
     .then((result) => init())
-
-
+//schedule new dowload every sunday at 00:00
+cron.schedule('0 0 * * 0', () =>{
+    cronJob()
+    console.log('Running data dowload')
+})
+//**  ******************************************************************************** */
 const init = () => {
 
     csv().fromFile(co2FilePath).then((jsonObj) => {
