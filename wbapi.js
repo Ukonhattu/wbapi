@@ -1,6 +1,16 @@
 const csv = require('csvtojson')
+const AdmZip = require('adm-zip')
 const co2FilePath = 'data/API_EN.ATM.CO2E.KT_DS2_en_csv_v2_10473877.csv'
 const populationFilePath = 'data/API_SP.POP.TOTL_DS2_en_csv_v2_10473719.csv'
+
+const updateData = () => {
+    const dataurl = 'http://api.worldbank.org/v2/en/indicator/EN.ATM.CO2E.KT?downloadformat=csv'
+    const zip = new AdmZip(dataurl)
+    zip.extractAllTo('/data/temp', true)
+    console.log('updateDataRun')
+}
+ updateData()
+
 
 let co2 = null
 csv().fromFile(co2FilePath).then((jsonObj) => {
