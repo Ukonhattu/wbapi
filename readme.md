@@ -6,7 +6,7 @@ Visuaalisen sovelluksen löytää herokusta\
 
 Sovelluksella voi piirtää käyrän eri maiden vuosittaisista hiilidioksidipäästöistä absoluuttisena määränä tai väkilukuun suhteutettuna sekä vertailla niitä muiden maiden vastaaviin käyriin.
 
-Lisätäksei uuden maan datan käyrään kirjoita sen nimi input laatikkoon (englanniksi) ja paina Add tai enteriä. Voit lisätä niin monta maata kuin haluat.
+Lisätäksei uuden maan datan käyrään kirjoita sen nimi input laatikkoon (englanniksi) ja paina Add tai enteriä. Voit lisätä niin monta maata kuin haluat. Voit ottaa ruksin pois "per capita" valinnasta jos haluat absoluuttisia arvoja. Et voi muuttaa valintaa jos sinulla on taulukossa jotakin dataa.
 
 Maat listataan taulukon alla. Näet sieltä mikä väri viittaa mihinkin maahan ja voit poistaa haluamasi maiden datan taulukosta. Voit poistaa kaikki käyrät painamalla reset nappulaa.
 
