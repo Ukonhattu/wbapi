@@ -1,28 +1,46 @@
 const csv = require('csvtojson')
 const AdmZip = require('adm-zip')
-const co2FilePath = 'data/API_EN.ATM.CO2E.*'
-const populationFilePath = 'data/API_SP.POP.TOTL_DS2_en_csv_v2_10473719.csv'
+const co2FileStart = 'data/API_EN.ATM.CO2E'
+const popFilePStart = 'data/API_SP.POP'
+let co2FilePath = 'data/API_EN.ATM.CO2E.KT_DS2_en_csv_v2_10473877.csv'
+let populationFilePath = 'data/API_SP.POP.TOTL_DS2_en_csv_v2_10473719.csv'
+const co2Dataurl = 'http://api.worldbank.org/v2/en/indicator/EN.ATM.CO2E.KT?downloadformat=csv'
+const popDataurl = 'http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=csv'
 const download = require('download-file')
+const glob = require('glob')
 
-const downloadData = () => {
-    const dataurl = 'http://api.worldbank.org/v2/en/indicator/EN.ATM.CO2E.KT?downloadformat=csv'
+
+const downloadData = (url, fileName) => {
+
     const downloadOptions = {
         directory: "./data/temp",
-        filename: "data.zip"
+        filename: fileName
     }
     return new Promise((resolve, reject) => {
-        download(dataurl, downloadOptions, (err) => {
+        download(url, downloadOptions, (err) => {
             if (err) reject(err)
             else resolve(downloadOptions.directory + '/' + downloadOptions.filename)
         })
     })
 }
 
- downloadData().then((result) => {
-     console.log('päästiin tänne asti')
-    const zip = new AdmZip(result)
-    zip.extractAllTo('./data/temp', true)
- })
+ downloadData(co2Dataurl, 'co2Data.zip')
+    .then((result) => {
+        glob(co2FileStart+'*', {}, (err, files) => {
+            co2FilePath = files[0]
+            console.log('päästiin tänne asti')
+            const zip = new AdmZip(result)
+            zip.extractAllTo('./data/temp', true)
+        })})
+        .then((result) => downloadData(popDataurl, 'popData.zip').then((result) => {
+            glob(co2FileStart+'*', {}, (err, files) => {
+            co2FilePath = files[0]
+            console.log('päästiin tänne asti2')
+            const zip = new AdmZip(result)
+            zip.extractAllTo('./data/temp', true)
+        })}))
+
+
 
 let co2 = null
 csv().fromFile(co2FilePath).then((jsonObj) => {
