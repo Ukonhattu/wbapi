@@ -40,6 +40,7 @@ Voit kysyä myös kaikkien maiden kaikki hiilidiokisipäästöt\
 tai kaikkien maiden väkiluvun kaikkina vuosina\
 `/api/pop`  
 (oikeasti molemmat datat alkavat vuodesta 1960!)
+Nämä eivät tule yhtä kivana muotona vaan ovat vain parsettu csv tiedosto
 
 
 
