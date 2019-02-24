@@ -16,22 +16,22 @@ Voit valita dynaamisesti näyttetävän välin vuosissa.
  Voit suorittaa kyselyjä apille saadakseni dataa json muodossa
 Kaikki kyselyt suoritetaan osoitteeseen `http://ukonhattu-wbapi.herokuapp.com/<query>`
 ----
->Tietyn maan hiilidioksidipäästöt vuosittain
+>Tietyn maan hiilidioksidipäästöt vuosittain  
 `/api/co2/country/<country name>`
 
->Tietyn maan hiilidioksidipäästöt tiettynä vuonna
+>Tietyn maan hiilidioksidipäästöt tiettynä vuonna  
 `/api/co2/country/<country name>/<year>`
 
->Tietyn maan hiilidioksidipäästöt tietyllä välillä
+>Tietyn maan hiilidioksidipäästöt tietyllä välillä  
 `/api/co2/country/<country name>/<year start>/<year stop>`
 
->Tietyn maan väestöluku vuosittain
+>Tietyn maan väestöluku vuosittain  
 `/api/pop/country/<country name>`
 
->Tietyn maan väestöluku tiettynä vuonna
-`/api/pop/country/<country name>/<year>`
+>Tietyn maan väestöluku tiettynä vuonna  
+`/api/pop/country/<country name>/<year>`  
 
->Tietyn maan väestöluku tietyllä välillä
+>Tietyn maan väestöluku tietyllä välillä  
 `/api/pop/country/<country name>/<year start>/<year stop>`
 
 ---
