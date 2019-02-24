@@ -8,12 +8,15 @@ const co2Dataurl = 'http://api.worldbank.org/v2/en/indicator/EN.ATM.CO2E.KT?down
 const popDataurl = 'http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=csv'
 const download = require('download-file')
 const glob = require('glob')
+const rimraf = require('rimraf')
 
+let co2 = null
+let population = null
 
 const downloadData = (url, fileName) => {
 
     const downloadOptions = {
-        directory: "./data/temp",
+        directory: "./temp",
         filename: fileName
     }
     return new Promise((resolve, reject) => {
@@ -28,29 +31,38 @@ const downloadData = (url, fileName) => {
     .then((result) => {
         glob(co2FileStart+'*', {}, (err, files) => {
             co2FilePath = files[0]
-            console.log('päästiin tänne asti')
-            const zip = new AdmZip(result)
-            zip.extractAllTo('./data/temp', true)
+
         })})
-        .then((result) => downloadData(popDataurl, 'popData.zip').then((result) => {
-            glob(co2FileStart+'*', {}, (err, files) => {
-            co2FilePath = files[0]
-            console.log('päästiin tänne asti2')
-            const zip = new AdmZip(result)
-            zip.extractAllTo('./data/temp', true)
-        })}))
+    .then((result) => downloadData(popDataurl, 'popData.zip')
+    .then((result) => {
+        glob(co2FileStart+'*', {}, (err, files) => {
+        co2FilePath = files[0]
+
+    })}))
+    .then((result) => rimraf('./data/*', () => {
+        console.log('päästiin tänne asti')
+        const co2zip = new AdmZip('./temp/co2Data.zip')
+        co2zip.extractAllTo('./data/', true)
+        console.log('päästiin tänne asti2')
+        const popzip = new AdmZip('./temp/popData.zip')
+        popzip.extractAllTo('./data/', true)
+    }))
+    .then((result) => init())
 
 
+const init = () => {
 
-let co2 = null
-csv().fromFile(co2FilePath).then((jsonObj) => {
-    co2 = jsonObj;
-})
+    csv().fromFile(co2FilePath).then((jsonObj) => {
+        co2 = jsonObj;
+    })
 
-let population = null
-csv().fromFile(populationFilePath).then((jsonObj) => {
-    population = jsonObj;
-})
+
+    csv().fromFile(populationFilePath).then((jsonObj) => {
+        population = jsonObj;
+    })
+}
+init()
+
 
 
 exports.co2json = () => co2
