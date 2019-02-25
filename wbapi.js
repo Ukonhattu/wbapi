@@ -2,8 +2,6 @@ const csv = require('csvtojson')
 const AdmZip = require('adm-zip')
 const co2FileStart = 'data/API_EN.ATM.CO2E'
 const popFilePStart = 'data/API_SP.POP'
-let co2FilePath = 'data/API_EN.ATM.CO2E.KT_DS2_en_csv_v2_10473877.csv'
-let populationFilePath = 'data/API_SP.POP.TOTL_DS2_en_csv_v2_10473719.csv'
 const co2Dataurl = 'http://api.worldbank.org/v2/en/indicator/EN.ATM.CO2E.KT?downloadformat=csv'
 const popDataurl = 'http://api.worldbank.org/v2/en/indicator/SP.POP.TOTL?downloadformat=csv'
 const download = require('download-file')
@@ -11,6 +9,8 @@ const glob = require('glob')
 const rimraf = require('rimraf')
 const cron = require('node-cron')
 
+let co2FilePath = 'data/API_EN.ATM.CO2E.KT_DS2_en_csv_v2_10473877.csv'
+let populationFilePath = 'data/API_SP.POP.TOTL_DS2_en_csv_v2_10473719.csv'
 let co2 = null
 let population = null
 
