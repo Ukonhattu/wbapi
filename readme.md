@@ -2,11 +2,11 @@
 WBApi on kolmannen osapuolen toteuttama rajapinta Word Bankin hiilidioksidi- sekä väestöluku datan kyselemiseen sekä visualisointiin.
 
 Visuaalisen sovelluksen löytää herokusta\
-[http://ukonhattu-wbapi.herokuapp.com/]()
+http://ukonhattu-wbapi.herokuapp.com/
 
 Frontin koodi löytyy  
-[http://github.com/Ukonhattu/wbapi-front/]()  
-(Kopioi osoite, linkki ei toimi koska github haluaa lukea -front jonain argumenttina...)
+http://github.com/Ukonhattu/wbapi-front/
+
 
 Sovelluksella voi piirtää käyrän eri maiden vuosittaisista hiilidioksidipäästöistä absoluuttisena määränä tai väkilukuun suhteutettuna sekä vertailla niitä muiden maiden vastaaviin käyriin.
 
