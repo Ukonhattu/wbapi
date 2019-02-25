@@ -14,14 +14,7 @@ const cron = require('node-cron')
 let co2 = null
 let population = null
 
-//****Functions to run at the start ***/
 
-init()
-cron.schedule('0 0 * * 0', () =>{
-    cronJob()
-    console.log('Running data download')
-})
-//*************************************/
 
 //****Download and unzip data from wordbank **************************************************/
 const downloadData = (url, fileName) => {
@@ -42,20 +35,18 @@ const cronJob = downloadData(co2Dataurl, 'co2Data.zip')
     .then((result) => {
         glob(co2FileStart+'*', {}, (err, files) => {
             co2FilePath = files[0]
-
         })})
-    .then((result) => downloadData(popDataurl, 'popData.zip')
-    .then((result) => {
-        glob(co2FileStart+'*', {}, (err, files) => {
-        co2FilePath = files[0]
-
-    })}))
-    .then((result) => rimraf('./data/*', () => {
+    .then((result) => downloadData(popDataurl, 'popData.zip'))
+    .then((result) => rimraf('./data/*', () => { //delete contents of data and extract new files
         const co2zip = new AdmZip('./temp/co2Data.zip')
         co2zip.extractAllTo('./data/', true)
         const popzip = new AdmZip('./temp/popData.zip')
         popzip.extractAllTo('./data/', true)
     }))
+    .then((result) => {
+        glob('./data/' +co2FileStart+'*', {}, (err, files) => { //find the name of the extracted file
+        co2FilePath = files[0]
+    })})
     .then((result) => init())
 //schedule new dowload every sunday at 00:00
 
@@ -146,3 +137,12 @@ getYearField = (year, obj) => {
     }
     return "undefined year"
 }
+
+//****Functions to run at the start ***/
+
+init()
+cron.schedule('0 0 * * 0', () =>{
+    cronJob()
+    console.log('Running data download')
+})
+//*************************************/
