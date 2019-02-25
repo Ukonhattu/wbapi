@@ -15,7 +15,8 @@ Voit valita dynaamisesti näyttetävän välin vuosissa.
 ## Api ##
 
 Voit suorittaa kyselyjä apille saadakseni dataa json muodossa
-Kaikki kyselyt suoritetaan osoitteeseen `http://ukonhattu-wbapi.herokuapp.com/<query>`
+Kaikki kyselyt suoritetaan osoitteeseen  
+`http://ukonhattu-wbapi.herokuapp.com/<query>`
 
 ----
 >Tietyn maan hiilidioksidipäästöt vuosittain  
