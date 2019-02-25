@@ -12,9 +12,11 @@ Maat listataan taulukon alla. Näet sieltä mikä väri viittaa mihinkin maahan 
 
 Voit valita dynaamisesti näyttetävän välin vuosissa.
 
-## Api
- Voit suorittaa kyselyjä apille saadakseni dataa json muodossa
+## Api ##
+
+Voit suorittaa kyselyjä apille saadakseni dataa json muodossa
 Kaikki kyselyt suoritetaan osoitteeseen `http://ukonhattu-wbapi.herokuapp.com/<query>`
+
 ----
 >Tietyn maan hiilidioksidipäästöt vuosittain  
 `/api/co2/country/<country name>`
