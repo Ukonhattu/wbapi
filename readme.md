@@ -42,6 +42,9 @@ tai kaikkien maiden väkiluvun kaikkina vuosina\
 (oikeasti molemmat datat alkavat vuodesta 1960!)\
 Nämä eivät tule yhtä kivana muotona vaan ovat vain parsettu csv tiedosto
 
+# Datan ajantasaisuus
+Serveri lataa kerran viikossa world bankista uudet csv tiedostot
+
 # Testit
 Testit ... tulevat joskus :)
 
