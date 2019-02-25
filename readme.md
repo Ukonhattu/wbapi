@@ -41,6 +41,10 @@ Kaikki kyselyt suoritetaan osoitteeseen
 >Tietyn maan väestöluku tietyllä välillä  
 `/api/pop/country/<country name>/<year start>/<year stop>`
 
+>Tietyn maan hiilidioksidipäästöt tietyllä välillä suhteutettuna väkilukuun  
+`/api/co2/country/<country name>/<year start>/<year stop>/true`
+
+
 ---
 Voit kysyä myös kaikkien maiden kaikki hiilidiokisipäästöt\
 `/api/co2`  
