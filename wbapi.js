@@ -13,6 +13,16 @@ const cron = require('node-cron')
 
 let co2 = null
 let population = null
+
+//****Functions to run at the start ***/
+
+init()
+cron.schedule('0 0 * * 0', () =>{
+    cronJob()
+    console.log('Running data download')
+})
+//*************************************/
+
 //****Download and unzip data from wordbank **************************************************/
 const downloadData = (url, fileName) => {
 
@@ -48,23 +58,17 @@ const cronJob = downloadData(co2Dataurl, 'co2Data.zip')
     }))
     .then((result) => init())
 //schedule new dowload every sunday at 00:00
-cron.schedule('0 0 * * 0', () =>{
-    cronJob()
-    console.log('Running data dowload')
-})
-//**  ******************************************************************************** */
-const init = () => {
 
+//***********************************************************************************/
+const init = () => {
     csv().fromFile(co2FilePath).then((jsonObj) => {
         co2 = jsonObj;
     })
-
-
     csv().fromFile(populationFilePath).then((jsonObj) => {
         population = jsonObj;
     })
 }
-init()
+
 
 
 
@@ -133,6 +137,7 @@ exports.co2percapitaRange = (name, start, end) => {
 
 }
 
+// get field name for spesific year (because the parsed json has obscure field names)
 getYearField = (year, obj) => {
     for (let key in obj[1]) {
         let attrName = key;
