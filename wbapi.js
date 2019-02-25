@@ -48,7 +48,7 @@ const cronJob = downloadData(co2Dataurl, 'co2Data.zip')
         co2FilePath = files[0]
     })})
     .then((result) => init())
-//schedule new dowload every sunday at 00:00
+
 
 //***********************************************************************************/
 const init = () => {
@@ -141,6 +141,7 @@ getYearField = (year, obj) => {
 //****Functions to run at the start ***/
 
 init()
+//schedule new dowload every sunday at 00:00
 cron.schedule('0 0 * * 0', () =>{
     cronJob()
     console.log('Running data download')
