@@ -6,6 +6,7 @@ Visuaalisen sovelluksen löytää herokusta\
 
 Frontin koodi löytyy  
 [http://github.com/Ukonhattu/wbapi-front/]()  
+(Kopioi osoite, linkki ei toimi koska github haluaa lukea -front jonain argumenttina...)
 
 Sovelluksella voi piirtää käyrän eri maiden vuosittaisista hiilidioksidipäästöistä absoluuttisena määränä tai väkilukuun suhteutettuna sekä vertailla niitä muiden maiden vastaaviin käyriin.
 
