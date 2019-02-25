@@ -4,6 +4,9 @@ WBApi on kolmannen osapuolen toteuttama rajapinta Word Bankin hiilidioksidi- sek
 Visuaalisen sovelluksen löytää herokusta\
 [http://ukonhattu-wbapi.herokuapp.com/]()
 
+Frontin koodi löytyy  
+[github.com/Ukonhattu/wbapi-front]()
+
 Sovelluksella voi piirtää käyrän eri maiden vuosittaisista hiilidioksidipäästöistä absoluuttisena määränä tai väkilukuun suhteutettuna sekä vertailla niitä muiden maiden vastaaviin käyriin.
 
 Lisätäksei uuden maan datan käyrään kirjoita sen nimi input laatikkoon (englanniksi) ja paina Add tai enteriä. Voit lisätä niin monta maata kuin haluat. Voit ottaa ruksin pois "per capita" valinnasta jos haluat absoluuttisia arvoja. Et voi muuttaa valintaa jos sinulla on taulukossa jotakin dataa.
